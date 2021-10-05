@@ -17,7 +17,6 @@ class Ingredient(models.Model):
 class MenuItem(models.Model):
 	title = models.CharField(max_length=35)
 	price = models.FloatField()
-	example = models.ImageField()
 
 	def __str__(self):
 		return self.title
