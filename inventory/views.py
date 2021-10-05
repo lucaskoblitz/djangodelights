@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from .models import Ingredient, Purchase
+from .models import Ingredient, Purchase, MenuItem
 # Create your views here.
 
 def home(request):
@@ -11,3 +11,6 @@ class Inventory(ListView):
 
 class PurchaseList(ListView):
 	model = Purchase
+
+class Menu_itemList(ListView):
+	model = MenuItem

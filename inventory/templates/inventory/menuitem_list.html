@@ -1,0 +1,21 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+
+<h1>Restaurant Menu</h1>
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Price</th>
+		<th>Sample</th>
+	</tr>
+	{% for item in menuitem_list %}
+		<tr>
+			<td>{{item.title}}</td>
+			<td>{{item.price}}</td>
+			<td>{{item.example}}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

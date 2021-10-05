@@ -9,7 +9,7 @@ class Ingredient(models.Model):
 	unit_price = models.FloatField()
 
 	def get_absolute_url(self):
-		return '/ingredient/list'
+		return '/inventory'
 
 	def __str__(self):
 		return self.name
@@ -35,7 +35,7 @@ class Purchase(models.Model):
 	timestamp = models.DateTimeField()
 
 	def get_absolute_url(self):
-		return '/purchase/list'
+		return '/purchase'
 
 
 	def __str__(self):

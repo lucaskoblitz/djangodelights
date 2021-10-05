@@ -4,5 +4,7 @@ from django.views.generic import ListView
 
 urlpatterns = [
 	path('', views.home, name="home"),
-	path('inventory/list', views.Inventory.as_view(), name='inventory')
+	path('inventory/', views.Inventory.as_view(), name='inventory'),
+	path('purchase/', views.PurchaseList.as_view(), name='purchase'),
+	path('menu/', views.Menu_itemList.as_view(), name='menu')
 ]
