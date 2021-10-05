@@ -8,6 +8,9 @@ class Ingredient(models.Model):
 	unit = models.CharField(max_length=5)
 	unit_price = models.FloatField()
 
+	def get_absolute_url(self):
+		return '/ingredient/list'
+
 	def __str__(self):
 		return self.name
 
@@ -21,9 +24,8 @@ class MenuItem(models.Model):
 
 class RecipeRequirement(models.Model):
 	menu_items = models.ForeignKey(MenuItem, default = 1,  on_delete=models.SET_DEFAULT)
-	ingredient = models.CharField(max_length=35)
+	ingredient = models.ManyToManyField(Ingredient)
 	quantity = models.FloatField()
-
 	def __str__(self):
 		return str(self.menu_items)
 
@@ -31,6 +33,10 @@ class RecipeRequirement(models.Model):
 class Purchase(models.Model):
 	menu_item = models.ForeignKey(MenuItem, default=1, on_delete=models.SET_DEFAULT)
 	timestamp = models.DateTimeField()
+
+	def get_absolute_url(self):
+		return '/purchase/list'
+
 
 	def __str__(self):
 		return 'Purchase ' + str(self.menu_item) + str(self.timestamp)
