@@ -1,1 +1,21 @@
-{{}}
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<h1>results of today's sales</h1>
+
+<table>
+	<tr>
+		<th>Total cost</th>
+		<th>Total sales</th>
+		<th>Gross Profit</th>
+	</tr>
+	<tr>
+		<td>{{totalcost}}</td>
+		<td>{{revenue}}</td>
+		<td>{{grossprofit}}</td>
+	</tr>
+</table>
+
+<h2>{{num}}</h2>
+
+{% endblock %}

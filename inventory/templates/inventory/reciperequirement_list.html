@@ -1,0 +1,23 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+
+<h1>Purchases made:</h1>
+<table>
+	<tr>
+		<th>Item</th>
+		<th>Ingredient</th>
+		<th>Quantity</th>
+		<th>Cost</th>
+	</tr>
+	{% for purchase in purchase_list %}
+	<tr>
+		<td>{{reciperequirement.menu_items}}</td>
+		<td>{{reciperequirement.ingredient}}</td>
+		<td>{{reciperequirement.quantity}}</td>
+	</tr>
+	{% endfor %}
+</table>
+<h1>{{reciperequirement.num}}</h1>
+
+{% endblock %}

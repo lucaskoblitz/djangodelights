@@ -8,11 +8,12 @@
 		<th>Quantity</th>
 		<th>Unit</th>
 		<th>Unit Price</th>
+		<th></th>
 	</tr>	
 
 	{% for ingredient in ingredient_list %}
 	<tr>
-		<td>{{ ingredient.name }}</td>
+		<td><a href="{% url 'update_ingredient' ingredient.id %}">{{ ingredient.name }}</a></td>
 		<td>{{ ingredient.quantity }}</td>
 		<td>{{ ingredient.unit }}</td>
 		<td>{{ ingredient.unit_price }}</td>
