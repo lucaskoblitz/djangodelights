@@ -4,23 +4,24 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from .models import Ingredient, Purchase, MenuItem, RecipeRequirement
 from .forms import IngredientForm, MenuItemForm, PurchaseForm, RecipeRequirementForm
 from decimal import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-def home(request):
-	return render(request, 'inventory/home.html')
+class home(LoginRequiredMixin, TemplateView):
+	template_name = 'inventory/home.html'
 
-class Inventory(ListView):
+class Inventory(LoginRequiredMixin, ListView):
 	model = Ingredient
 
 
-class PurchaseList(ListView):
+class PurchaseList(LoginRequiredMixin, ListView):
 	model = Purchase
 
-class Menu_itemList(ListView):
+class Menu_itemList(LoginRequiredMixin, ListView):
 	model = MenuItem
 
 
-class Results(TemplateView):
+class Results(LoginRequiredMixin, TemplateView):
 	template_name = 'inventory/results.html'
 
 	@property
@@ -46,27 +47,31 @@ class Results(TemplateView):
 		context['grossprofit'] = self.revenue - self.cost
 		return context
 
-class UpdateIngredient(UpdateView):
+class UpdateIngredient(LoginRequiredMixin, UpdateView):
 	template_name= 'inventory/update_ingredient.html'
 	form_class = IngredientForm
 	model = Ingredient
 
-class CreateMenuItem(CreateView):
+class CreateMenuItem(LoginRequiredMixin, CreateView):
 	template_name= 'inventory/add_menu_item.html'
 	form_class = MenuItemForm
 	model = MenuItem
 
-class CreateIngredient(CreateView):
+class CreateIngredient(LoginRequiredMixin, CreateView):
 	template_name= 'inventory/add_ingredient.html'
 	form_class = IngredientForm
 	model = Ingredient
 
-class CreateRecipeRequirement(CreateView):
+class CreateRecipeRequirement(LoginRequiredMixin, CreateView):
 	template_name= 'inventory/add_recipe.html'
 	form_class = RecipeRequirementForm
 	model = RecipeRequirement
 
-class CreatePurchase(CreateView):
+class CreatePurchase(LoginRequiredMixin, CreateView):
 	template_name= 'inventory/add_purchase.html'
 	form_class = PurchaseForm
 	model = Purchase
+
+def logout_view(request):
+  logout(request)
+  return redirect("menu")

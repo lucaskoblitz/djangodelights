@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.views.generic import ListView
 
 urlpatterns = [
-	path('', views.home, name="home"),
+	path('', views.home.as_view(), name="home"),
 	path('inventory/', views.Inventory.as_view(), name='inventory'),
 	path('purchase/', views.PurchaseList.as_view(), name='purchase'),
 	path('menu/', views.Menu_itemList.as_view(), name='menu'),
@@ -13,4 +13,5 @@ urlpatterns = [
 	path('add-ingredient/', views.CreateIngredient.as_view(), name='createingredient'),
 	path('add-recipe/', views.CreateRecipeRequirement.as_view(), name='createrecipe'),
 	path('add-purchase/', views.CreatePurchase.as_view(), name='createpurchase'),
+	path("accounts/", include("django.contrib.auth.urls"), name="login"),
 ]
